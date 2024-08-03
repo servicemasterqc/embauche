@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Master - Embauche</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            background-image: url('logo.png');
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            background-position: top left;
+        }
+
+        .container {
+            max-height: 100vh;
+            overflow-y: auto;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center pt-10">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm container">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">Embauche</h2>
+        <form>
+            <div class="mb-4">
+                <label for="last-name" class="block text-gray-700 text-sm font-bold mb-2">Nom</label>
+                <input type="text" id="last-name" name="last-name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nom de famille">
+            </div>
+            <div class="mb-4">
+                <label for="first-name" class="block text-gray-700 text-sm font-bold mb-2">Prénom</label>
+                <input type="text" id="first-name" name="first-name" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Prénom">
+            </div>
+            <div class="mb-4">
+                <label for="dob" class="block text-gray-700 text-sm font-bold mb-2">Date de naissance</label>
+                <input type="date" id="dob" name="dob" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="social-security-number" class="block text-gray-700 text-sm font-bold mb-2">Numéro d'assurances sociales</label>
+                <input type="text" id="social-security-number" name="social-security-number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="123 - 456 - 789">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Adresse courriel</label>
+                <input type="email" id="email" name="email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="email@domain.tld">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Langue des documents de paie</label>
+                <div class="flex items-center mb-2">
+                    <input type="checkbox" id="anglais" name="langue-documents" value="anglais" class="mr-2">
+                    <label for="anglais" class="text-gray-700">Anglais</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="francais" name="langue-documents" value="francais" class="mr-2">
+                    <label for="francais" class="text-gray-700">Français</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Sexe à la naissance</label>
+                <div class="flex items-center mb-2">
+                    <input type="radio" id="feminin" name="sexe" value="feminin" class="mr-2">
+                    <label for="feminin" class="text-gray-700">Féminin</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="masculin" name="sexe" value="masculin" class="mr-2">
+                    <label for="masculin" class="text-gray-700">Masculin</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">État civil</label>
+                <div class="flex items-center mb-2">
+                    <input type="radio" id="celibataire" name="etat-civil" value="celibataire" class="mr-2">
+                    <label for="celibataire" class="text-gray-700">Célibataire</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="radio" id="marie" name="etat-civil" value="marie" class="mr-2">
+                    <label for="marie" class="text-gray-700">Marié</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="insurance-number" class="block text-gray-700 text-sm font-bold mb-2">Numéro d'assurance maladie</label>
+                <input type="text" id="insurance-number" name="insurance-number" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="ABCD123456789">
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Adresse</label>
+                <input type="text" id="address" name="address" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Adresse">
+            </div>
+            <div class="mb-4">
+                <label for="city" class="block text-gray-700 text-sm font-bold mb-2">Ville</label>
+                <input type="text" id="city" name="city" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ville">
+            </div>
+            <div class="mb-4">
+                <label for="province" class="block text-gray-700 text-sm font-bold mb-2">Province</label>
+                <input type="text" id="province" name="province" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Province">
+            </div>
+            <div class="mb-4">
+                <label for="postal-code" class="block text-gray-700 text-sm font-bold mb-2">Code postal</label>
+                <input type="text" id="postal-code" name="postal-code" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Code postal">
+            </div>
+            <div class="mb-4">
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Téléphone / Cellulaire</label>
+                <input type="text" id="phone" name="phone" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="(123) 456 - 7890">
+            </div>
+            <button type="button" onclick="generatePDF()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Télécharger PDF</button>
+        </form>
+    </div>
+    <script>
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const lastName = document.getElementById('last-name').value;
+            const firstName = document.getElementById('first-name').value;
+            const dob = document.getElementById('dob').value;
+            const socialSecurityNumber = document.getElementById('social-security-number').value;
+            const email = document.getElementById('email').value;
+            const langueDocuments = Array.from(document.querySelectorAll('input[name="langue-documents"]:checked'))
+                .map(input => input.value)
+                .join(", ");
+            const sexe = document.querySelector('input[name="sexe"]:checked')?.value || "";
+            const etatCivil = document.querySelector('input[name="etat-civil"]:checked')?.value || "";
+            const insuranceNumber = document.getElementById('insurance-number').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const province = document.getElementById('province').value;
+            const postalCode = document.getElementById('postal-code').value;
+            const phone = document.getElementById('phone').value;
+
+            const pdfContent = `
+            Nom: ${lastName}
+            Prénom: ${firstName}
+            Date de naissance: ${dob}
+            Numéro d'assurances sociales: ${socialSecurityNumber}
+            Adresse courriel: ${email}
+            Langue des documents de paie : ${langueDocuments}
+            Sexe à la naissance : ${sexe}
+            État civil : ${etatCivil}
+            Numéro d'assurance maladie: ${insuranceNumber}
+            Adresse: ${address}
+            Ville: ${city}
+            Province: ${province}
+            Code postal: ${postalCode}
+            Téléphone / Cellulaire: ${phone}
+            `;
+
+            doc.setFontSize(13);
+            doc.text(pdfContent, 10, 10);
+
+            doc.save('embauche.pdf');
+        }
+    </script>
+</body>
+
+</html>
